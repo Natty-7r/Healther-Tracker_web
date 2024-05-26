@@ -1,0 +1,77 @@
+/* Custom scrollbar styles for Webkit browsers (Chrome, Safari) */
+.hidden_scrollbar::-webkit-scrollbar {
+  width: 7px; /* adjust the width as needed */
+}
+
+.hidden_scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.hidden_scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Custom scrollbar styles for Firefox */
+
+.hidden_scrollbar::-moz-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.hidden_scrollbar::-moz-scrollbar-track {
+  background-color: transparent;
+}
+
+/*  think scroll barrr  */
+.thin_scrollbar::-webkit-scrollbar {
+  width: 3px; /* adjust the width as needed */
+}
+
+.thin_scrollbar::-webkit-scrollbar-thumb {
+  background-color: gray;
+}
+
+.thin_scrollbar::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+/* Custom scrollbar styles for Firefox */
+* {
+  scrollbar-width: 3px;
+}
+
+.thin_scrollbar::-moz-scrollbar-thumb {
+  background-color: gray;
+}
+
+.thin_scrollbar::-moz-scrollbar-track {
+  background-color: white;
+}
+
+/*  think scroll barrr  */
+.hideable_thin_scrollbar::-webkit-scrollbar {
+  width: 3px; /* adjust the width as needed */
+}
+
+.hideable_thin_scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+.hideable_thin_scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgb(209 213 219);
+}
+
+.hideable_thin_scrollbar::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+/* Custom scrollbar styles for Firefox */
+
+.hideable_thin_scrollbar::-moz-scrollbar-thumb {
+  background-color: transparent;
+}
+.hideable_thin_scrollbar:hover::-moz-scrollbar-thumb {
+  background-color: rgb(209 213 219);
+}
+
+.hideable_thin_scrollbar::-moz-scrollbar-track {
+  background-color: white;
+}
