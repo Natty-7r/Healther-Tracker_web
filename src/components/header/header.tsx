@@ -37,7 +37,7 @@ export const Header = () => {
               size={"sm"}
               variant={"outline"}
               className="capitalize"
-              onClick={() => navigate("/auth/signin")}
+              onClick={() => navigate("/auth/signin-user")}
             >
               log in
             </Button>
