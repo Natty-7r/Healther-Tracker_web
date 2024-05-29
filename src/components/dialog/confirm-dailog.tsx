@@ -6,14 +6,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 
 export type Ref = HTMLButtonElement;
 
 export const ConfirmDialog = ({
-  children,
   actionName,
   title,
   description,

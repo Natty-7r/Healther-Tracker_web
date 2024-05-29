@@ -13,7 +13,7 @@ const CategorySongsPage = () => {
             title={song.title}
             songId={song.id}
             favorite={song.favorite}
-            artistName={song.artistName}
+            artistName={song.artistId}
           />
         ))}
       </section>

@@ -18,7 +18,11 @@ export const ReaderPage = () => {
   }, [dummyLric?.songId]);
   return (
     <main className=" text-center relative  h-[84%] sm:h-[91% ">
-      <ReaderHeader songId={dummysongs[0].id} songTitle={dummysongs[0].title} />
+      <ReaderHeader
+        songId={dummysongs[0].id}
+        songTitle={dummysongs[0].title}
+        categories={["ye mariam"]}
+      />
       <ScrollArea className="px-4 sm:px-8 lg:px-32 py-2 sm:py-4 md:py-8 overflow-auto h-[90%] ">
         {azmachs && azmachs.length > 0 ? (
           azmachs.map((azmach: string, index: number) => (
