@@ -16,27 +16,40 @@ import { toast } from "../ui/use-toast";
 import { z } from "zod";
 import { LogoHeader } from "../header/logo-header";
 import { OTPSchema } from "@/utils/schemas/otp-schema ";
+import { verifyUser } from "@/services/auth";
+import { useEmailStore } from "@/utils/store/email";
+import { useState } from "react";
 const OTPForm = ({
   onSuccess,
   message,
-  onResendOTP,
 }: {
   message?: string;
   onSuccess: Function;
   onResendOTP: Function;
 }) => {
+  const { email } = useEmailStore();
+  const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof OTPSchema>>({
     resolver: zodResolver(OTPSchema),
   });
-  const onSubmit = (data: z.infer<typeof OTPSchema>) => {
-    toast({
-      description: (
-        <pre className="mt-2  rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+  const onSubmit = async (data: z.infer<typeof OTPSchema>) => {
+    setLoading(true);
+    const { status, message } = await verifyUser({
+      otp: data.otp,
+      email,
     });
-    onSuccess();
+
+    console.log(status, message);
+    if (status == "fail") {
+      setLoading(false);
+      toast({
+        variant: "destructive",
+        description: message,
+      });
+    } else {
+      setLoading(false);
+      onSuccess();
+    }
   };
 
   return (
@@ -73,19 +86,8 @@ const OTPForm = ({
         />
 
         <Button className="w-full mt-6 capitalize" type="submit">
-          Verfiry
+          {loading ? "Verifying ..." : "Verfiy"}
         </Button>
-
-        <p className="font-semibold text-foreground/70">
-          Don't Recieve OTP?
-          <Button
-            className="font-bold text-primary"
-            variant={"link"}
-            onClick={() => onResendOTP()}
-          >
-            Resend OTP
-          </Button>
-        </p>
       </form>
     </Form>
   );

@@ -15,24 +15,37 @@ import { Input } from "@/components/ui/input";
 import { Lock, Mail } from "lucide-react";
 import { toast } from "../ui/use-toast";
 import { z } from "zod";
-import { SignInSchema } from "@/utils/schemas/signin-schema";
+import { SignDoctorInSchema } from "@/utils/schemas/signin-schema";
 import { Checkbox } from "../ui/checkbox";
 import { useNavigate } from "react-router-dom";
 import { LogoHeader } from "../header/logo-header";
+import { useState } from "react";
+import { loginAsAdmin } from "@/services/auth";
 const SignInForm = () => {
-  const form = useForm<z.infer<typeof SignInSchema>>({
-    resolver: zodResolver(SignInSchema),
+  const form = useForm<z.infer<typeof SignDoctorInSchema>>({
+    resolver: zodResolver(SignDoctorInSchema),
   });
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const onSubmit = (data: z.infer<typeof SignInSchema>) => {
-    toast({
-      description: (
-        <pre className="mt-2  rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-    navigate("/");
+  const onSubmit = async (data: z.infer<typeof SignDoctorInSchema>) => {
+    setLoading(true);
+    const {
+      status,
+      message,
+      data: result,
+    } = await loginAsAdmin({ email: data.email, password: data.password });
+
+    if (status == "fail") {
+      toast({
+        variant: "destructive",
+        description: message,
+      });
+    } else {
+      console.log(result);
+      // login(data);
+      setLoading(false);
+      return navigate("/");
+    }
   };
 
   return (
@@ -78,8 +91,8 @@ const SignInForm = () => {
             </FormItem>
           )}
         />
-        <Button className="w-full mt-6" type="submit">
-          Log In
+        <Button className="w-full mt-6" type="submit" disabled={loading}>
+          {loading ? "Loggin in" : " Log In"}
         </Button>
         <div className="flex items-center justify-between w-full my-2">
           <div className="flex items-center gap-2">
@@ -94,10 +107,16 @@ const SignInForm = () => {
           </a>
         </div>
         <p className="font-semibold text-foreground/70">
-          Don't have an account?{" "}
-          <a className="font-bold text-primary" href={"/auth/signup"}>
-            Sign up
-          </a>
+          <div className="flex gap-4">
+            Don't have an account?{" "}
+            <a className="font-bold text-primary" href={"/auth/signin-user"}>
+              Log In as User
+            </a>{" "}
+            |
+            <a className="font-bold text-primary" href={"/auth/signup"}>
+              Sign up
+            </a>
+          </div>
         </p>
       </form>
     </Form>

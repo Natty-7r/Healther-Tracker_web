@@ -22,3 +22,30 @@ type UserStore = {
   login: (user: any) => any;
   logout: () => any;
 };
+
+// types.ts
+export interface CreateDoctorData {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+}
+
+export interface APiResponse {
+  status: string;
+  data?: any;
+  message: string;
+}
+
+export interface VerifyOtpData {
+  email: string;
+  otp: string;
+}
+
+export interface doctorSigninDto {
+  email: string;
+  password: string;
+}
+export interface userSigninDto {
+  controller_id: string;
+}

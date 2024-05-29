@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import OTPForm from "../form /otp-form";
+import { useEmailStore } from "@/utils/store/email";
+import { useNavigate } from "react-router";
 
 export type Ref = HTMLButtonElement;
 
@@ -12,6 +14,8 @@ export const OTPDialog = ({
   setModalState: any;
   openState?: boolean;
 }) => {
+  const { clearEmail } = useEmailStore();
+  const navigate = useNavigate();
   return (
     <Dialog open={openState} onOpenChange={setModalState}>
       <DialogTrigger asChild data-state="open">
@@ -20,7 +24,13 @@ export const OTPDialog = ({
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <OTPForm onSuccess={() => {}} onResendOTP={() => {}} />
+        <OTPForm
+          onSuccess={() => {
+            clearEmail();
+            navigate("/auth/signin-doctor");
+          }}
+          onResendOTP={() => {}}
+        />
       </DialogContent>
     </Dialog>
   );

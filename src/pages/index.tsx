@@ -4,7 +4,8 @@ import AddLyricPage from "./add-lyric";
 import CategoriesPage from "./category";
 import CategorySongsPage from "./category-songs";
 import FavoriteSongsPage from "./favorite-songs";
-import SignInPage from "./auth/signin";
+import SignInDoctorPage from "./auth/signin-doctor";
+import SignInUserPage from "./auth/signin-user";
 import SignUpPage from "./auth/signup";
 import ForgotPasswordPage from "./auth/forgot-passoword";
 import HomePage from "./home-page";
@@ -18,7 +19,8 @@ export {
   CategoriesPage,
   CategorySongsPage,
   FavoriteSongsPage,
-  SignInPage,
+  SignInDoctorPage,
+  SignInUserPage,
   SignUpPage,
   HomePage,
   ForgotPasswordPage,

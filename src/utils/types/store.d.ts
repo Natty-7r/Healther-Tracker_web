@@ -13,3 +13,9 @@ type UserStore = {
   login: (user: any) => any;
   logout: () => any;
 };
+
+type EmailStore = {
+  email: string;
+  setEmail: (email: string) => any;
+  clearEmail: () => any;
+};
