@@ -112,11 +112,25 @@ const SignInForm = () => {
         <p className="font-semibold text-foreground/70">
           <div className="flex gap-4">
             Don't have an account?{" "}
-            <a className="font-bold text-primary" href={"/auth/signin-user"}>
+            <a
+              className="font-bold text-primary"
+              href={"/auth/signin-user"}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/auth/signin-user");
+              }}
+            >
               Log In as User
             </a>{" "}
             |
-            <a className="font-bold text-primary" href={"/auth/signup"}>
+            <a
+              className="font-bold text-primary"
+              href={"/auth/signup"}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/auth/signup");
+              }}
+            >
               Sign up
             </a>
           </div>

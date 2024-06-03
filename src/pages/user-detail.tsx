@@ -39,14 +39,21 @@ const UserDetailPage = () => {
 
   if (loading == "idle" || loading == "loading")
     return (
-      <main className="flex  justify-center items-center">
+      <main className="flex   p-24 capitalize  justify-center items-center">
         <h1 className="text-2xl">loading</h1>;
       </main>
     );
   if (loading == "fail")
     return (
-      <main className="flex  justify-center items-center">
+      <main className="flex  p-24 capitalize   justify-center items-center">
         <h1 className="text-2xl text-red-600">{errorMsg}</h1>;
+      </main>
+    );
+
+  if (userData.length == 0)
+    return (
+      <main className="flex p-24 capitalize  justify-center items-center">
+        <h1 className="text-2xl text-red-600">no user data </h1>
       </main>
     );
   return (

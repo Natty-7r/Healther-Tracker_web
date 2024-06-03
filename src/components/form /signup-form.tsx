@@ -23,6 +23,7 @@ import { useState } from "react";
 import OTPDialog from "../dialog/opt-dialog";
 import { createDoctor } from "@/services/auth";
 import { useEmailStore } from "@/utils/store/email";
+import { useNavigate } from "react-router";
 const SignUpForm = () => {
   const { setEmail } = useEmailStore();
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -31,6 +32,7 @@ const SignUpForm = () => {
   const form = useForm<z.infer<typeof SignUpSchema>>({
     resolver: zodResolver(SignUpSchema),
   });
+  const navigate = useNavigate();
 
   // const navigate = useNavigate();
   const onSubmit = async (data: z.infer<typeof SignUpSchema>) => {
@@ -160,11 +162,25 @@ const SignUpForm = () => {
         <p className="font-semibold text-foreground/70">
           <div className="flex gap-4  text-xs  sm:text-base">
             Already have an account?{" "}
-            <a className=" font-bold text-primary" href={"/auth/signin-user"}>
+            <a
+              className=" font-bold text-primary"
+              href={"/auth/signin-user"}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/auth/signin-user");
+              }}
+            >
               Log In as User
             </a>{" "}
             |
-            <a className="font-bold text-primary" href={"/auth/signin-doctor"}>
+            <a
+              className="font-bold text-primary"
+              href={"/auth/signin-doctor"}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/auth/signin-doctor");
+              }}
+            >
               Log In as Doctor
             </a>
           </div>
