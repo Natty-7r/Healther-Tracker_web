@@ -1,11 +1,5 @@
 import { MainLayout } from "./components/layout/main-layout";
 import {
-  AllSongsPage,
-  AddLyricPage,
-  CategoriesPage,
-  CategorySongsPage,
-  FavoriteSongsPage,
-  ReaderPage,
   SignInDoctorPage,
   SignInUserPage,
   SignUpPage,
@@ -21,6 +15,7 @@ import UpdatePasswordPage from "./pages/auth/update-passoword";
 
 const pages: PageData[] = [
   { path: "/", Page: HomePage },
+  { path: "/users", Page: UsersPage },
   { path: "/create-user", Page: CreateUserpage },
   { path: "/user-detail", Page: UserDetailPage },
   { path: "/auth/signin-doctor", Page: SignInDoctorPage },

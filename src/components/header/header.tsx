@@ -71,6 +71,7 @@ export const Header = () => {
 
 const headerLinks: HeaderLinkProps[] = [
   { link: "/", linkText: "home" },
+  { link: "/users", linkText: "users" },
   { link: "/create-user", linkText: "add user" },
 ];
 
