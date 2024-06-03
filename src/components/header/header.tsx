@@ -91,10 +91,10 @@ export function MobileNav({
   const navigate = useNavigate();
   return (
     <Sheet onOpenChange={setOpen} open={openMobileNav}>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className=" sm:hidden">
         <Menu />
       </SheetTrigger>
-      <SheetContent className="flex flex-col  ">
+      <SheetContent className="flex flex-col  sm:hidden ">
         <div className="flex flex-col gap-8 ">
           <div className="flex flex-col gap-6 w-fit  items-center mx-auto mt-8">
             {headerLinks.map((link, index) => (
