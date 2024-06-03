@@ -72,3 +72,12 @@ type LyricPreviewFormProps = {
   setPreview: any;
   form: any;
 };
+
+interface UserData {
+  id: string;
+  first_name: string;
+  last_name: string;
+  controller_id: string;
+  created_at: string;
+  doctor_id: string;
+}

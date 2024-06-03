@@ -65,7 +65,7 @@ export const loginAsUser = async (
   authData: userSigninDto
 ): Promise<APiResponse> => {
   try {
-    const response = await API.post("auth/doctor/login", authData);
+    const response = await API.post("auth/user/login", authData);
     const { status, message, data } = response.data;
     return { status, data, message };
   } catch (error: any) {

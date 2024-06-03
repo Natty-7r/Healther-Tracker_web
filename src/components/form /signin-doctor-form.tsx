@@ -21,10 +21,12 @@ import { useNavigate } from "react-router-dom";
 import { LogoHeader } from "../header/logo-header";
 import { useState } from "react";
 import { loginAsAdmin } from "@/services/auth";
+import { useUserStore } from "@/utils/store/user";
 const SignInForm = () => {
   const form = useForm<z.infer<typeof SignDoctorInSchema>>({
     resolver: zodResolver(SignDoctorInSchema),
   });
+  const { login } = useUserStore();
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const onSubmit = async (data: z.infer<typeof SignDoctorInSchema>) => {
@@ -36,15 +38,16 @@ const SignInForm = () => {
     } = await loginAsAdmin({ email: data.email, password: data.password });
 
     if (status == "fail") {
+      setLoading(false);
       toast({
         variant: "destructive",
         description: message,
       });
     } else {
-      console.log(result);
-      // login(data);
       setLoading(false);
-      return navigate("/");
+      login({ token: result.token, role: "DOCTOR", ...result.user });
+      setLoading(false);
+      return navigate("/users");
     }
   };
 

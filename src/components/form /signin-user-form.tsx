@@ -20,10 +20,10 @@ import { Checkbox } from "../ui/checkbox";
 import { useNavigate } from "react-router-dom";
 import { LogoHeader } from "../header/logo-header";
 import { loginAsUser } from "@/services/auth";
-// import { useUserStore } from "@/utils/store/user";
+import { useUserStore } from "@/utils/store/user";
 import { useState } from "react";
 const SignInForm = () => {
-  // const { login } = useUserStore();
+  const { login } = useUserStore();
   const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof SignUserInSchema>>({
     resolver: zodResolver(SignUserInSchema),
@@ -39,13 +39,15 @@ const SignInForm = () => {
     } = await loginAsUser({ controller_id: data.controller_id });
 
     if (status == "fail") {
+      setLoading(false);
       toast({
         variant: "destructive",
         description: message,
       });
     } else {
+      setLoading(false);
       console.log(result);
-      // login(data);
+      login({ token: result.token, role: "USER", ...result.user });
       setLoading(false);
       return navigate("/");
     }

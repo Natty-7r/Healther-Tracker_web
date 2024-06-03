@@ -17,6 +17,7 @@ const getUserDataFromLocalStorage = (): any | null => {
 const initialUser: any | null = getUserDataFromLocalStorage(); //change any to UserData response until the api is done
 
 export const useUserStore = create<UserStore>()((set) => ({
+  isAuth: initialUser?.isAuth,
   id: initialUser?.id, // Provide default values
   first_name: initialUser?.first_name,
   last_name: initialUser?.last_name,
@@ -31,6 +32,7 @@ export const useUserStore = create<UserStore>()((set) => ({
       if (window)
         localStorage.setItem("mezmur_lyric_user", JSON.stringify(user));
       return {
+        isAuth: true,
         id: user?.id,
         email: user?.email,
         role: user?.role,
@@ -43,6 +45,7 @@ export const useUserStore = create<UserStore>()((set) => ({
     set(() => {
       if (window) localStorage.removeItem("mezmur_lyric_user");
       return {
+        isAuth: false,
         id: undefined,
         first_name: undefined,
         last_name: undefined,

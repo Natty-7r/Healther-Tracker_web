@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { LogoHeader } from "./logo-header";
 
 export const Header = () => {
-  const [auth, _] = useState(false);
+  const { isAuth, firstName, lastName } = useUserStore();
   const [openMobileNav, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -28,10 +28,13 @@ export const Header = () => {
           ))}
           <div className="btn btn_header" onClick={() => {}}></div>
         </div>
-        {auth ? (
+        {isAuth ? (
           <Avatar>
             <AvatarImage src="/image/user.png" alt="@shadcn" sizes="4" />
-            <AvatarFallback>NF</AvatarFallback>
+            <AvatarFallback>
+              {firstName && firstName[0].toLocaleUpperCase()}{" "}
+              {lastName && lastName[0].toLocaleUpperCase()}
+            </AvatarFallback>
           </Avatar>
         ) : (
           <div className="flex gap-4">
@@ -78,6 +81,7 @@ const headerLinks: HeaderLinkProps[] = [
 export default Header;
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useUserStore } from "@/utils/store/user";
 
 export function MobileNav({
   openMobileNav,

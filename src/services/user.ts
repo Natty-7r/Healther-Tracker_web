@@ -1,17 +1,16 @@
-import {
-  APiResponse,
-  CreateUserDto,
-  VerifyOtpData,
-  doctorSigninDto,
-  userSigninDto,
-} from "@/utils/types/api";
+import { APiResponse, CreateUserDto } from "@/utils/types/api";
 import { API } from "./api";
 
 export const createUser = async (
-  userData: CreateUserDto
+  userData: CreateUserDto,
+  token: string
 ): Promise<APiResponse> => {
   try {
-    const response = await API.post("/doctor/create-user", userData);
+    const response = await API.post("/doctor/create-user", userData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     const { status, message, data } = response.data;
     return { status, data, message };
@@ -25,11 +24,16 @@ export const createUser = async (
   }
 };
 
-export const verifyUser = async (
-  otpData: VerifyOtpData
+export const getUsers = async (
+  doctorId: string,
+  token: string
 ): Promise<APiResponse> => {
   try {
-    const response = await API.post("/auth/verify-account", otpData);
+    const response = await API.get(`/doctor/users/${doctorId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const { status, message, data } = response.data;
     return { status, data, message };
   } catch (error: any) {
@@ -42,28 +46,16 @@ export const verifyUser = async (
   }
 };
 
-export const loginAsAdmin = async (
-  authData: doctorSigninDto
+export const getUserData = async (
+  userId: string,
+  token: string
 ): Promise<APiResponse> => {
   try {
-    const response = await API.post("auth/doctor/login", authData);
-    const { status, message, data } = response.data;
-    return { status, data, message };
-  } catch (error: any) {
-    console.error("Error:", error);
-    const errorMsg = error.response
-      ? error.response.data.message
-      : error.message;
-
-    return { status: "fail", data: null, message: errorMsg };
-  }
-};
-
-export const loginAsUser = async (
-  authData: userSigninDto
-): Promise<APiResponse> => {
-  try {
-    const response = await API.post("auth/doctor/login", authData);
+    const response = await API.get(`doctor/user-data/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const { status, message, data } = response.data;
     return { status, data, message };
   } catch (error: any) {

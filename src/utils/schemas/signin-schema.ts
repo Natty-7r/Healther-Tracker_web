@@ -9,7 +9,5 @@ export const SignDoctorInSchema = z.object({
   }),
 });
 export const SignUserInSchema = z.object({
-  controller_id: z.string().email({
-    message: "Enter a Valid Email",
-  }),
+  controller_id: z.string(),
 });
