@@ -15,7 +15,7 @@ const Usersage = () => {
     if (id == null || role !== "DOCTOR") {
       setErrorMsg("un authorized");
       setLoading("fail");
-      return navigate("auth/signin");
+      return navigate("/auth/signin-user");
     }
     const { status, message, data } = await getUsers(
       id as string,

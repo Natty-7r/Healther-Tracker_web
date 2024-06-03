@@ -30,7 +30,10 @@ export const useUserStore = create<UserStore>()((set) => ({
   ) =>
     set(() => {
       if (window)
-        localStorage.setItem("mezmur_lyric_user", JSON.stringify(user));
+        localStorage.setItem(
+          "mezmur_lyric_user",
+          JSON.stringify({ ...user, isAuth: true })
+        );
       return {
         isAuth: true,
         id: user?.id,

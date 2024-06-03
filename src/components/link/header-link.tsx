@@ -9,7 +9,7 @@ const HeaderLink = ({ link, linkText }: { linkText: string; link: string }) => {
     <a
       href={link}
       className={cn(
-        "capitalize text-link text-sm  ",
+        "capitalize text-link text-sm  text-nowrap ",
         location.pathname == link
           ? " text-foreground"
           : "text-muted-foreground   hover:text-foreground/80"

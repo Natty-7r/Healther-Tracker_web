@@ -20,7 +20,9 @@ import { useState } from "react";
 import { AddUserSchema } from "@/utils/schemas/add-user-schema";
 import { createUser } from "@/services/user";
 import { useNavigate } from "react-router";
+import { useUserStore } from "@/utils/store/user";
 const CreateUserForm = () => {
+  const { token } = useUserStore();
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof AddUserSchema>>({
@@ -30,11 +32,14 @@ const CreateUserForm = () => {
   // const navigate = useNavigate();
   const onSubmit = async (data: z.infer<typeof AddUserSchema>) => {
     setLoading(true);
-    const { status, message } = await createUser({
-      first_name: data.firstName,
-      last_name: data.lastName,
-      controller_id: data.controllerId,
-    });
+    const { status, message } = await createUser(
+      {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        controller_id: data.controllerId,
+      },
+      token as string
+    );
 
     if (status == "fail") {
       toast({
@@ -43,7 +48,7 @@ const CreateUserForm = () => {
       });
     } else {
       setLoading(false);
-      return navigate("/");
+      return navigate("/users");
     }
   };
 

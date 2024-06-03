@@ -22,7 +22,9 @@ import { LogoHeader } from "../header/logo-header";
 import { loginAsUser } from "@/services/auth";
 import { useUserStore } from "@/utils/store/user";
 import { useState } from "react";
+import { useDoctorStore } from "@/utils/store/doctor";
 const SignInForm = () => {
+  const { setUser } = useDoctorStore();
   const { login } = useUserStore();
   const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof SignUserInSchema>>({
@@ -46,10 +48,11 @@ const SignInForm = () => {
       });
     } else {
       setLoading(false);
-      console.log(result);
-      login({ token: result.token, role: "USER", ...result.user });
+      const { user_data, ...rest } = result.user;
+      login({ token: result.token, role: "USER", ...rest });
+      setUser({ token: result.token, role: "USER", ...result.user });
       setLoading(false);
-      return navigate("/");
+      return navigate("/user-detail");
     }
   };
 

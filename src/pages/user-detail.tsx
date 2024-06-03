@@ -1,5 +1,5 @@
 import UserDataCard from "@/components/card/user-data-card";
-import { getUserData, getUsers } from "@/services/user";
+import { getUserData } from "@/services/user";
 import { useDoctorStore } from "@/utils/store/doctor";
 import { useUserStore } from "@/utils/store/user";
 import { Accordion } from "@radix-ui/react-accordion";
@@ -9,17 +9,17 @@ import { useNavigate } from "react-router";
 type LoadStatus = "idle" | "loading" | "fail" | "success";
 const UserDetailPage = () => {
   const navigate = useNavigate();
-  const { id, role, token } = useUserStore();
+  const { role, token } = useUserStore();
   const { user } = useDoctorStore();
   const [loading, setLoading] = useState<LoadStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [userData, setData] = useState<any>("idle");
 
   const loadUserData = async () => {
-    if (id == null || role !== "DOCTOR") {
+    if (!(role == "USER" || role == "DOCTOR")) {
       setErrorMsg("un authorized");
       setLoading("fail");
-      return navigate("auth/signin");
+      return navigate("/auth/signin-user");
     }
     const { status, message, data } = await getUserData(
       user?.controller_id as string,
@@ -31,7 +31,6 @@ const UserDetailPage = () => {
     }
     setLoading("success");
     setData(data);
-    console.log(data);
   };
 
   useEffect(() => {
