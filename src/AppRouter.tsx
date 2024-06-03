@@ -11,19 +11,18 @@ import {
   SignUpPage,
   ForgotPasswordPage,
   HomePage,
+  UsersPage,
   VerifyResetOTPPage,
+  UserDetailPage,
+  CreateUserpage,
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import UpdatePasswordPage from "./pages/auth/update-passoword";
 
 const pages: PageData[] = [
   { path: "/", Page: HomePage },
-  { path: "/all-songs", Page: AllSongsPage },
-  { path: "/lyrics", Page: ReaderPage },
-  { path: "/category", Page: CategoriesPage },
-  { path: "/category-songs", Page: CategorySongsPage },
-  { path: "/favorite", Page: FavoriteSongsPage },
-  { path: "/add-lyric", Page: AddLyricPage },
+  { path: "/create-user", Page: CreateUserpage },
+  { path: "/user-detail", Page: UserDetailPage },
   { path: "/auth/signin-doctor", Page: SignInDoctorPage },
   { path: "/auth/signin-user", Page: SignInUserPage },
   { path: "/auth/signup", Page: SignUpPage },

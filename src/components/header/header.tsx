@@ -10,7 +10,9 @@ import { LogoHeader } from "./logo-header";
 
 export const Header = () => {
   const [auth, _] = useState(false);
+  const [openMobileNav, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+
   const navigate = useNavigate();
 
   return (
@@ -62,20 +64,91 @@ export const Header = () => {
           </div>
         )}
       </div>
-      <a href="/" className="block md:hidden">
-        <Menu />
-      </a>
+      <MobileNav setOpen={setOpen} openMobileNav={openMobileNav} />
     </header>
   );
 };
 
 const headerLinks: HeaderLinkProps[] = [
   { link: "/", linkText: "home" },
-  { link: "/all-songs", linkText: "all songs" },
-  { link: "/favorite", linkText: "favorite" },
-  { link: "/category", linkText: "categories" },
-  { link: "/add-lyric", linkText: "add lyrics" },
-  { link: "/", linkText: "" },
+  { link: "/create-user", linkText: "add user" },
 ];
 
 export default Header;
+
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
+export function MobileNav({
+  openMobileNav,
+  setOpen,
+}: {
+  openMobileNav: boolean;
+  setOpen: any;
+}) {
+  const [auth, _] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const navigate = useNavigate();
+  return (
+    <Sheet onOpenChange={setOpen} open={openMobileNav}>
+      <SheetTrigger asChild>
+        <Menu />
+      </SheetTrigger>
+      <SheetContent className="flex flex-col  ">
+        <div className="flex flex-col gap-8 ">
+          <div className="flex flex-col gap-6 w-fit  items-center mx-auto mt-8">
+            {headerLinks.map((link, index) => (
+              <HeaderLink
+                link={link.link}
+                linkText={link.linkText}
+                key={index}
+              />
+            ))}
+            <div className="btn btn_header" onClick={() => {}}></div>
+          </div>
+          {auth ? (
+            <Avatar>
+              <AvatarImage src="/image/user.png" alt="@shadcn" sizes="4" />
+              <AvatarFallback>NF</AvatarFallback>
+            </Avatar>
+          ) : (
+            <div className="flex flex-col   gap-4  ">
+              <Button
+                size={"sm"}
+                variant={"outline"}
+                className="capitalize w-full"
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/auth/signin-user");
+                }}
+              >
+                log in
+              </Button>
+              <Button
+                size={"sm"}
+                className="capitalize"
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/auth/signup");
+                }}
+              >
+                sign up
+              </Button>
+
+              <Button
+                size={"sm"}
+                onClick={() => {
+                  if (theme == "light") setTheme("dark");
+                  if (theme == "dark") setTheme("light");
+                }}
+                variant={"outline"}
+                className="w-fit mx-auto"
+              >
+                {theme == "light" ? <Moon /> : <SunMoon />}
+              </Button>
+            </div>
+          )}
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}

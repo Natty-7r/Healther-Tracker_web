@@ -59,10 +59,12 @@ const SignUpForm = () => {
       <OTPDialog openState={openOTPModel} setModalState={setOTPMOdalOpen} />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full mx-auto flex flex-col gap-3 items-center  lg:gap-3 lg:w-4/5"
+        className="w-full mx-auto flex flex-col gap-3 items-center  lg:gap-3 lg:w-4/5 "
       >
         <LogoHeader auth />
-        <h1 className="font-semibold text-3xl mb-4 ">Signup as Doctor</h1>
+        <h1 className="font-semibold text-base  sm:text-3xl sm:mb-4 ">
+          Signup as Doctor
+        </h1>
         <FormField
           control={form.control}
           name="firstName"
@@ -156,9 +158,9 @@ const SignUpForm = () => {
           </div>
         </div>
         <p className="font-semibold text-foreground/70">
-          <div className="flex gap-4">
+          <div className="flex gap-4  text-xs  sm:text-base">
             Already have an account?{" "}
-            <a className="font-bold text-primary" href={"/auth/signin-user"}>
+            <a className=" font-bold text-primary" href={"/auth/signin-user"}>
               Log In as User
             </a>{" "}
             |

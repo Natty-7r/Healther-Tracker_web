@@ -30,6 +30,11 @@ export interface CreateDoctorData {
   email: string;
   password: string;
 }
+export interface CreateUserDto {
+  first_name: string;
+  last_name: string;
+  controller_id: string;
+}
 
 export interface APiResponse {
   status: string;

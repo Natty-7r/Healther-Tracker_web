@@ -1,5 +1,5 @@
 import UpdatePasswordForm from "@/components/form /update-passowrd-form";
-import { Card } from "@/components/ui/card";
+
 import { Undo } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,9 +16,9 @@ const UpdatePasswordPage = () => {
         />
         back go
       </div>
-      <Card className="w-4/5 md:w-3/5 lg:w-1/2 mx-auto px-2 lg:p-8 border-none">
+      <div className="w-4/5 md:w-3/5 lg:w-1/2 mx-auto px-2 lg:p-8 border-none">
         <UpdatePasswordForm />
-      </Card>
+      </div>
     </section>
   );
 };
