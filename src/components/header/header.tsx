@@ -110,7 +110,7 @@ export function MobileNav({
 }) {
   const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
-  const { isAuth, firstName, lastName, role, logout } = useUserStore();
+  const { isAuth, role, logout } = useUserStore();
 
   const headerLinks =
     role == "DOCTOR"
