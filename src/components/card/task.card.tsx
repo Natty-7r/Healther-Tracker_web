@@ -26,7 +26,7 @@ const TaskCard = ({
       { ...filter },
       accessToken || ""
     );
-    if (statusResponse !== "fail") setTasks(data);
+    if (statusResponse !== "fail") setTasks(data.tasks);
 
     setLoading(false);
   };
