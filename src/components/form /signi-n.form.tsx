@@ -92,7 +92,7 @@ const SignInForm = () => {
           )}
         />
         <Button className="w-full mt-6" type="submit" disabled={loading}>
-          {loading ? "Loggin in" : " Log In"}
+          {loading ? "Logging in..." : " Log In"}
         </Button>
       </form>
     </Form>
