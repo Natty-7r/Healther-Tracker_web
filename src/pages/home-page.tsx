@@ -12,9 +12,7 @@ const HomePage = () => {
         />
       </div>
       <div className="absolute p-[5%] lg:p-[20%]  lg:gap-2 top-0 left-0 h-full w-full z-[6] flex  flex-col justify-center items-center text-white ">
-        <h1 className="font-bold text-center my-8  capitalize text-3xl lg:text-5xl  ">
-          transform Your Health Journey
-        </h1>
+        <h1 className="font-bold text-center my-8  capitalize text-3xl lg:text-5xl  "></h1>
         <h2 className="font-bold  text-sm lg:text-xl  text-center text-white/90 ">
           Enhance your daily routine with our innovative health tracker. Get
           detailed insights into your physical activity, dietary habits, and

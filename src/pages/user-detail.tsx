@@ -1,7 +1,7 @@
 import UserDataCard from "@/components/card/user-data-card";
-import { getUserData } from "@/services/user";
+// import { getTasks } from "@/services/task";
 import { useDoctorStore } from "@/utils/store/doctor";
-import { useUserStore } from "@/utils/store/user";
+import { useAuthStore } from "@/utils/store/user.store";
 import { Accordion } from "@radix-ui/react-accordion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -9,29 +9,30 @@ import { useNavigate } from "react-router";
 type LoadStatus = "idle" | "loading" | "fail" | "success";
 const UserDetailPage = () => {
   const navigate = useNavigate();
-  const { role, token } = useUserStore();
+  const { role, token } = useAuthStore();
   const { user } = useDoctorStore();
   const [loading, setLoading] = useState<LoadStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [userData, setData] = useState<any>("idle");
 
-  const loadUserData = async () => {
-    if (!(role == "USER" || role == "DOCTOR")) {
-      setErrorMsg("un authorized");
-      setLoading("fail");
-      return navigate("/auth/signin-user");
-    }
-    const { status, message, data } = await getUserData(
-      user?.controller_id as string,
-      token as string
-    );
-    if (status == "fail") {
-      setErrorMsg(message);
-      return setLoading("fail");
-    }
-    setLoading("success");
-    setData(data);
-  };
+  const loadUserData = async () => {};
+  // const loadUserData = async () => {
+  //   if (!(role == "USER" || role == "DOCTOR")) {
+  //     setErrorMsg("un authorized");
+  //     setLoading("fail");
+  //     return navigate("/auth/signin-user");
+  //   }
+  //   const { status, message, data } = await getUserData(
+  //     user?.controller_id as string,
+  //     token as string
+  //   );
+  //   if (status == "fail") {
+  //     setErrorMsg(message);
+  //     return setLoading("fail");
+  //   }
+  //   setLoading("success");
+  //   setData(data);
+  // };
 
   useEffect(() => {
     loadUserData();

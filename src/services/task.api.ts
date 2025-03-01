@@ -1,19 +1,18 @@
-import { APiResponse, CreateUserDto } from "@/utils/types/api";
 import { API } from "./api";
 
-export const createUser = async (
-  userData: CreateUserDto,
+export const createTask = async (
+  dto: CreateTaskDto,
   token: string
 ): Promise<APiResponse> => {
   try {
-    const response = await API.post("/doctor/create-user", userData, {
+    const response = await API.post("/task", dto, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    const { status, message, data } = response.data;
-    return { status, data, message };
+    const data = response.data;
+    return { status: "sucess", data, message: "" };
   } catch (error: any) {
     console.error("Error:", error);
     const errorMsg = error.response
@@ -24,18 +23,22 @@ export const createUser = async (
   }
 };
 
-export const getUsers = async (
-  doctorId: string,
+export const getTasks = async (
+  query: TaskFilter,
   token: string
 ): Promise<APiResponse> => {
   try {
-    const response = await API.get(`/doctor/users/${doctorId}`, {
+    const { status: taskStatus, page, itemsPerPage } = query;
+    let queryString = `page=${page}&itemsPerPage=${itemsPerPage}`;
+    if (taskStatus) queryString = queryString.concat(`&status=${taskStatus}`);
+
+    const response = await API.get(`/task/?${queryString}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    const { status, message, data } = response.data;
-    return { status, data, message };
+    const data = response.data;
+    return { status: "success", data, message: "" };
   } catch (error: any) {
     console.error("Error:", error);
     const errorMsg = error.response
@@ -46,18 +49,22 @@ export const getUsers = async (
   }
 };
 
-export const getUserData = async (
-  userId: string,
+export const finishTask = async (
+  id: string,
   token: string
 ): Promise<APiResponse> => {
   try {
-    const response = await API.get(`doctor/user-data/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const { status, message, data } = response.data;
-    return { status, data, message };
+    const response = await API.patch(
+      `task/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = response.data;
+    return { status: "success", data, message: "" };
   } catch (error: any) {
     console.error("Error:", error);
     const errorMsg = error.response

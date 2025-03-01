@@ -81,3 +81,11 @@ interface UserData {
   created_at: string;
   doctor_id: string;
 }
+
+type TaskPaginationProps = {
+  page: number;
+  totalPages: number;
+  nextPage: number | null;
+  previousPage: number | null;
+  onPaginate: (page: number) => void;
+};

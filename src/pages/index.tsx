@@ -1,23 +1,15 @@
-import SignInDoctorPage from "./auth/signin-doctor";
-import SignInUserPage from "./auth/signin-user";
-import SignUpPage from "./auth/signup";
-import ForgotPasswordPage from "./auth/forgot-passoword";
+import CreateUserpage from "./create-user";
 import HomePage from "./home-page";
-import VerifyResetOTPPage from "./auth/verify-reset-otp";
-import UpdatePasswordForm from "@/components/form /update-passowrd-form";
-import UsersPage from "./users";
-import CreateUserpage from "./auth/create-user";
 import UserDetailPage from "./user-detail";
+import SignInPage from "./auth/signin";
+import CreateTaskPage from "./create-user";
+import TasksPage from "./tasks";
 
 export {
-  SignInDoctorPage,
-  SignInUserPage,
-  SignUpPage,
-  HomePage,
-  ForgotPasswordPage,
-  VerifyResetOTPPage,
-  UpdatePasswordForm,
-  UsersPage,
-  UserDetailPage,
   CreateUserpage,
+  HomePage,
+  CreateTaskPage,
+  UserDetailPage,
+  SignInPage,
+  TasksPage,
 };

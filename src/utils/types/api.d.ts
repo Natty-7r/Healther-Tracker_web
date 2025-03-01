@@ -6,51 +6,42 @@ interface Song {
   favorite: Favorite;
 }
 
-type Token = {
-  accessToken?: string;
-  refreshToken?: string;
-};
-
-type UserStore = {
-  id: ?string;
-  first_name?: string;
-  last_name?: string;
-  email?: string;
-  role?: string;
-  token: Token;
-
-  login: (user: any) => any;
-  logout: () => any;
-};
-
-// types.ts
-export interface CreateDoctorData {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
-}
-export interface CreateUserDto {
-  first_name: string;
-  last_name: string;
-  controller_id: string;
+interface CreateTaskDto {
+  name: string;
 }
 
-export interface APiResponse {
+interface APiResponse {
   status: string;
   data?: any;
   message: string;
 }
 
-export interface VerifyOtpData {
+interface VerifyOtpData {
   email: string;
   otp: string;
 }
 
-export interface doctorSigninDto {
-  email: string;
+interface signInDto {
+  emailOrUsername: string;
   password: string;
 }
-export interface userSigninDto {
+interface userSigninDto {
   controller_id: string;
 }
+
+interface QueryDto {
+  page: number;
+  itemsPerPage: number;
+}
+
+type PaginationPayload = {
+  page: number;
+  itemsPerPage: number;
+} & Pagination;
+
+type Pagination = {
+  total: number;
+  nextPage: number | null;
+  previousPage: number | null;
+  totalPages: number;
+};
