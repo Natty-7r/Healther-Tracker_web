@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { createTask, getTasks } from "@/services/task.api";
 import { CreateTaskSchema } from "@/utils/schemas/create-task.schema";
-import { useAuthStore } from "@/utils/store/user.store";
+import { useAuthStore } from "@/utils/store/auth";
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "../ui/use-toast";

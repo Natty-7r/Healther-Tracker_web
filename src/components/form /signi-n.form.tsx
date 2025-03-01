@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { SignInSchema } from "@/utils/schemas/signin.schema";
-import { useAuthStore } from "@/utils/store/user.store";
+import { useAuthStore } from "@/utils/store/auth";
 import { Lock, Mail } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

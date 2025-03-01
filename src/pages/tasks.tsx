@@ -1,7 +1,7 @@
 import CreateTaskDialog from "@/components/dialog/create-task.dialog";
 import TaskList from "@/components/list/task.list";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useAuthStore } from "@/utils/store/user.store";
+import { useAuthStore } from "@/utils/store/auth";
 
 function TasksPage() {
   const { user } = useAuthStore();

@@ -1,7 +1,7 @@
 import TaskCard, { TaskCardSkeleton } from "@/components/card/task.card";
 import { getTasks } from "@/services/task.api";
 import { useTaskStore } from "@/utils/store/task.store"; // Import task store
-import { useAuthStore } from "@/utils/store/user.store"; // Import user store
+import { useAuthStore } from "@/utils/store/auth"; // Import user store
 import { PackageOpen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "../ui/use-toast";

@@ -17,7 +17,7 @@ type AuthStore = {
 
 type Task = {
   id: string;
-  supervisorId: string;
+  supervisorId: any;
   name: string;
   priority: number;
   isAssigned: boolean;

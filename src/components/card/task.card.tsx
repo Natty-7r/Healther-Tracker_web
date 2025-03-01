@@ -1,5 +1,5 @@
 import { finishTask, getTasks } from "@/services/task.api";
-import { useAuthStore } from "@/utils/store/user.store";
+import { useAuthStore } from "@/utils/store/auth";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";

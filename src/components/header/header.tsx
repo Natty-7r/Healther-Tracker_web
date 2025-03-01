@@ -73,7 +73,7 @@ export const Header = () => {
 export default Header;
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useAuthStore } from "@/utils/store/user.store";
+import { useAuthStore } from "@/utils/store/auth";
 
 export function MobileNav({
   openMobileNav,
