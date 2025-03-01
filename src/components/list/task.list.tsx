@@ -50,7 +50,7 @@ const TaskList = ({ status }: { status: Taskstatus }) => {
   }, [status]);
 
   useEffect(() => {
-    loadTasks();
+    if (accessToken) loadTasks();
   }, [filter.page]);
   if (loading)
     return (
