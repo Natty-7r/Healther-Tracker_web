@@ -67,7 +67,7 @@ const TaskList = ({ status }: { status: Taskstatus }) => {
   return (
     <div className="p">
       <div className=" ">
-        {tasks.length > 0 ? (
+        {tasks?.length > 0 ? (
           <div className="flex flex-wrap gap-4 md:gap-8">
             {tasks.map((task) => (
               <TaskCard
