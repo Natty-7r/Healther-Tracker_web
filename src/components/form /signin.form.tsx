@@ -63,7 +63,7 @@ const SignInForm = () => {
             <FormItem className="w-full">
               <FormControl>
                 <Input
-                  placeholder="Email"
+                  placeholder="Email or username"
                   {...field}
                   className="py-6"
                   icon={<Mail className="text-secondary-foreground h-4 w-4" />}
